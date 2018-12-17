@@ -68,7 +68,7 @@ test:
   stage: test
   script:
     # try to connect to GitLab.com
-    - ssh git@gitlab.com
+    - ssh -vvv git@gitlab.com
 
     # try to clone yourself. A *PUBLIC* key paired to the SSH_PRIVATE_KEY was added as deploy key to this repository
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
