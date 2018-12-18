@@ -68,17 +68,18 @@ test:
   stage: test
   script:
     # try to connect to GitLab.com
-    - ssh -v git@gitlab.com
+    - ssh git@gitlab.com
 
     # try to clone yourself. A *PUBLIC* key paired to the SSH_PRIVATE_KEY was added as deploy key to this repository
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
-
-    - ls -la
 
 
 deploy:
   stage: deploy
   script:
+    - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
+    - cd glmm-theory
     - Rscript -e "install.packages(c('ggplot2','cowplot'), repos = 'https://cloud.r-project.org/')"
-    - Rscript -e "library(rmarkdown); setwd('/builds/neurathsboat.blog/posts/glmm-theory/src'); render('glmm-theory.Rmd', output_file = 'index.md')"
-    - Rscript -e "setwd('/builds/neurathsboat.blog/posts/glmm-theory/src'); source('ProcessRmd.R')"
+    - Rscript -e "library(rmarkdown); setwd('glmm-theory/src'); render('glmm-theory.Rmd', output_file = 'index.md')"
+    - Rscript -e "setwd('glmm-theory/src'); source('ProcessRmd.R')"
+    - git commit -am "CI commit"
