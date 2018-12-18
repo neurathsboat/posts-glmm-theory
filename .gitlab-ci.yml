@@ -74,6 +74,7 @@ test:
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
 
     # Check default R path
+    - bash
     - Rscript -e "getwd() \
                   setwd('glmm-theory') \
                   getwd() \
@@ -88,6 +89,7 @@ test:
 deploy:
   stage: deploy
   script:
+    - bash
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
     - Rscript -e "library(rmarkdown) \
                   setwd('glmm-theory/src') \
