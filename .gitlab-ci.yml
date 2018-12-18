@@ -80,5 +80,5 @@ deploy:
   stage: deploy
   script:
     - Rscript -e "install.packages(c('ggplot2','cowplot'), repos = 'https://cloud.r-project.org/')"
-    - Rscript -e "library(rmarkdown); render('src/glmm-theory.Rmd', output_file = 'src/index.md')"
-    - Rscript -e "setwd('src'); getwd(); source('ProcessRmd.R')"
+    - Rscript -e "library(rmarkdown); setwd('/builds/neurathsboat.blog/posts/glmm-theory/src'); render('glmm-theory.Rmd', output_file = 'index.md')"
+    - Rscript -e "setwd('/builds/neurathsboat.blog/posts/glmm-theory/src'); source('ProcessRmd.R')"
