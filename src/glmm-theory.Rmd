@@ -19,7 +19,7 @@ knitr::opts_chunk$set(fig.path = "",
 
 In this post, I will briefly cover the theory behind linear models
 that range from simple linear regression to generalized linear mixed models.
-In the [companion post]({{< ref "post/glmm-examples.md" >}}),
+In the [companion post]({{< ref "/post/glmm-examples" >}}),
 I will go through the analysis of 
 an example dataset with several different linear models
 to illustrate their practical applications.
