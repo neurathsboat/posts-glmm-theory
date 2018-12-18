@@ -84,6 +84,7 @@ test:
     - cd "glmm-theory"
     - git add .
     - git commit -m "Test commit"
+    - echo All tests have succeeded!
 
 
 deploy:
@@ -98,3 +99,4 @@ deploy:
     - cd glmm-theory
     - git add .
     - git commit -m "CI commit"
+    - git push -u origin master
