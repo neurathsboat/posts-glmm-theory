@@ -74,11 +74,10 @@ test:
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
 
     # Check default R path
-    - bash
-    - Rscript -e "getwd() \
-                  setwd('glmm-theory') \
-                  getwd() \
-                  writeLines('test', 'spam.txt') \
+    - Rscript -e "getwd();
+                  setwd('glmm-theory');
+                  getwd();
+                  writeLines('test', 'spam.txt');
                   system('ls -la')"
 
     # Test git commit
@@ -91,9 +90,9 @@ deploy:
   script:
     - bash
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
-    - Rscript -e "library(rmarkdown) \
-                  setwd('glmm-theory/src') \
-                  render('glmm-theory.Rmd', output_file = 'index.md') \
+    - Rscript -e "library(rmarkdown);
+                  setwd('glmm-theory/src');
+                  render('glmm-theory.Rmd', output_file = 'index.md');
                   source('ProcessRmd.R')"
     - cd glmm-theory
     - git commit -am "CI commit"
