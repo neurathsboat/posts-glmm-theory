@@ -82,7 +82,8 @@ test:
 
     # Test git commit
     - cd "glmm-theory"
-    - git commit -am "Test commit"
+    - git add .
+    - git commit -m "Test commit"
 
 
 deploy:
@@ -95,4 +96,5 @@ deploy:
                   render('glmm-theory.Rmd', output_file = 'index.md');
                   source('ProcessRmd.R')"
     - cd glmm-theory
-    - git commit -am "CI commit"
+    - git add .
+    - git commit -m "CI commit"
