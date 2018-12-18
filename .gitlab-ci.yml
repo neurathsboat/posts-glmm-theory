@@ -73,6 +73,14 @@ test:
     # try to clone yourself. A *PUBLIC* key paired to the SSH_PRIVATE_KEY was added as deploy key to this repository
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
 
+    # Check default R path
+    - Rscript -e "getwd()"
+    - Rscript -e "setwd('glmm-theory')"
+
+    # Test git commit
+    - touch spam.txt
+    - git commit -am "Test commit"
+
 
 deploy:
   stage: deploy
