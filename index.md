@@ -24,7 +24,7 @@ description = ""
 
 In this post, I will briefly cover the theory behind linear models
 that range from simple linear regression to generalized linear mixed models.
-In the [companion post]({{< ref "post/glmm-examples.md" >}}),
+In the [companion post]({{< ref "/post/glmm-examples" >}}),
 I will go through the analysis of 
 an example dataset with several different linear models
 to illustrate their practical applications.
@@ -34,13 +34,13 @@ with little extra effort.
 
 {{% toc %}}
 
-# Linear Regression Models
+## Linear Regression Models
 
 Simple linear regression models are of the form:
 
-$$ y = \hat{\beta_1}x + \hat{\beta_0} + \hat{\epsilon} \label{eq:simple_linear_model} $$
+$$ \hat{y} = \hat{\beta_1}x + \hat{\beta_0} + \hat{\epsilon} \label{eq:simple_linear_model} $$
 
-where $y$ is the response variable (also called the outcome or dependent variable),
+where $\hat{y}$ is the response variable (also called the outcome or dependent variable),
 $x$ the predictor variable (also called stimulus or independent variable),
 $\hat{\beta_1}$ the coefficient estimate of the predictor variable,
 $\hat{\beta_0}$ the intercept estimate term (where all predictor variables are $0$),
@@ -50,21 +50,21 @@ a linear combination of the predictor variables.
 But the predictor variables themselves do not need to be linear.
 For example, the following is also considered a linear model:
 
-$$ y = \hat{\beta_1}x^2 + \hat{\beta_0} + \hat{\epsilon} \label{eq:linear_model_quadratic_term} $$
+$$ \hat{y} = \hat{\beta_1}x^2 + \hat{\beta_0} + \hat{\epsilon} \label{eq:linear_model_quadratic_term} $$
 
 In the case that multiple predictors are included in the model
 we could write an equation of the form:
 
-$$ y = \hat{\beta_2}x_2 + \hat{\beta_1}x_1 + ... + \hat{\beta_0} + \hat{\epsilon} \label{eq:verbose_linear_model} $$
+$$ \hat{y} = \hat{\beta_2}x_2 + \hat{\beta_1}x_1 + ... + \hat{\beta_0} + \hat{\epsilon} \label{eq:verbose_linear_model} $$
 
 However, this becomes cumbersome 
 when we start including many variables in the model.
 Instead, we can use matrix notation to simplify long equations:
 
-$$ y = \hat{\beta}X + \hat{\epsilon} \label{eq:linear_model_matrix_notation} $$
+$$ \hat{y} = \hat{\beta}X + \hat{\epsilon} \label{eq:linear_model_matrix_notation} $$
 
 where
-$y = \begin{bmatrix} y_1 \\\ y_2 \\\ \vdots \\\ y_n \end{bmatrix}$,
+$\hat{y} = \begin{bmatrix} \hat{y_1} \\\ \hat{y_2} \\\ \vdots \\\ \hat{y_n} \end{bmatrix}$,
 $X = \begin{bmatrix} 1 & x\_{1,1} & \dots & x\_{1,p} \\\ 1 & x\_{2,1} & \dots & x\_{2,p} \\\ 1 & \vdots & \ddots & \vdots \\\ 1 & x\_{n,1} & \dots & x\_{n,p} \end{bmatrix}$,
 and $\hat{\beta} = \begin{bmatrix} \hat{\beta_0}, \enspace \hat{\beta_1}, \enspace \dots, \enspace \hat{\beta_p} \end{bmatrix}$
 with $p$ the number of variables in the model including the intercept.
@@ -128,7 +128,7 @@ are sometimes referred to as “General Linear Models”
 which should not be confused with “General**ized** Linear Models” 
 that we will discuss below.
 
-# Generalized Linear Models
+## Generalized Linear Models
 In some cases, the assumptions of the linear model may not be valid.
 This is especially important when the response variable
 is expected to be better approximated with a distribution
@@ -158,7 +158,7 @@ $$ g(\hat{y}) = \hat{y} \label{eq:glm_identity} $$
 and the normal distribution,
 the model becomes the simple linear model.
 
-# Linear Mixed-Effects Regression Models
+## Linear Mixed-Effects Regression Models
 
 Another extension of linear regression models is 
 the framework of linear mixed-effects models (LMEs).
@@ -174,7 +174,7 @@ several classes of the same school
 --that is why they are also called hierarchical (or multilevel) models.
 The model is expressed as:
 
-$$ y = \hat{\beta}X + \hat{u}Z + \epsilon \label{eq:lme} $$
+$$ \hat{y} = \hat{\beta}X + \hat{u}Z + \epsilon \label{eq:lme} $$
 
 where $Z$ is the design matrix corresponding to the different units
 and $u$ the estimated coefficients for those units.
@@ -187,7 +187,7 @@ the normal distribution with mean $0$.
 Hence, only their variance (and covariance between random-effects terms, 
 if more than one are included in the model) is estimated.
 
-# Generalized Linear Mixed-Effects Models
+## Generalized Linear Mixed-Effects Models
 
 A natural extension of both GLMs and LMEs is
 to combine the two into a single framework,
@@ -196,14 +196,14 @@ GLMMs can accommodate data that are distributed according to
 any of the exponential family of distributions
 and are possibly acquired non-independently.
 
-# Estimation
+## Estimation
 
 In the case of linear regression models, 
 the coefficient estimates can be obtained using 
 the least-squares method, which has a closed-form solution.
 Briefly, the best approximation is found by minimizing the error estimate:
 
-$$ S(\beta) = {|| y - \beta X||}^2 \label{eq:regression_criterion} $$
+$$ S(\hat{\beta}) = {|| \hat{y} - \hat{\beta} X||}^2 \label{eq:regression_criterion} $$
 
 and
 [it can be shown]
