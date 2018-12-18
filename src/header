@@ -8,14 +8,10 @@ draft = false
 tags = ["statistics", "regression", "mixed_model"]
 summary = "A brief introduction into the theory behind linear models, including linear mixed-effects models and generalized linear (mixed) models"
 abstract = "A brief introduction into the theory behind linear models, including linear mixed-effects models and generalized linear (mixed) models"
+hasPlotly = false
+authors = ["Vassilis Kehayas"]
+doi = "10.5281/zenodo.2402367"
 
-[author]
-name = "Vassilis Kehayas"
-
-[header]
-image = ""
-caption = ""
-preview = true
-description = ""
-
+[image]
+  caption = ""
 +++
