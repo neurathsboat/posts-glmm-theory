@@ -2,7 +2,7 @@ stages:
   - test
   - deploy
 
-image: vkehayas/alpine-r-doc
+image: vkehayas/alpine-r-doc-plot
 
 before_script:
   ##
@@ -74,11 +74,14 @@ test:
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
 
     # Check default R path
-    - Rscript -e "getwd()"
-    - Rscript -e "setwd('glmm-theory')"
+    - Rscript -e "getwd() \
+                  setwd('glmm-theory') \
+                  getwd() \
+                  writeLines('test', 'spam.txt') \
+                  system('ls -la')"
 
     # Test git commit
-    - touch spam.txt
+    - cd "glmm-theory"
     - git commit -am "Test commit"
 
 
@@ -86,8 +89,9 @@ deploy:
   stage: deploy
   script:
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
+    - Rscript -e "library(rmarkdown) \
+                  setwd('glmm-theory/src') \
+                  render('glmm-theory.Rmd', output_file = 'index.md') \
+                  source('ProcessRmd.R')"
     - cd glmm-theory
-    - Rscript -e "install.packages(c('ggplot2','cowplot'), repos = 'https://cloud.r-project.org/')"
-    - Rscript -e "library(rmarkdown); setwd('glmm-theory/src'); render('glmm-theory.Rmd', output_file = 'index.md')"
-    - Rscript -e "setwd('glmm-theory/src'); source('ProcessRmd.R')"
     - git commit -am "CI commit"
