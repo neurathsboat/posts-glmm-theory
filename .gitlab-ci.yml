@@ -2,7 +2,7 @@ stages:
   - test
   - deploy
 
-image: vkehayas/alpine-r-doc-plot
+image: vkehayas/alpine-r-doc-plot:1.1.1
 
 before_script:
   ##
@@ -79,6 +79,16 @@ test:
                   getwd();
                   writeLines('test', 'spam.txt');
                   system('ls -la')"
+                  
+    # Check access to MRAN (https://github.com/RevolutionAnalytics/checkpoint)
+    - Rscript -e "setwd('glmm-examples');
+                  cranRepo = 'https://cloud.r-project.org/';
+                  buildDate0 = '2019-01-01';
+                  install.packages('checkpoint', repos = cranRepo);
+                  system('mkdir /root/.checkpoint');
+                  library(checkpoint);
+                  checkpoint(buildDate0)"
+                  
 
     # Test git commit
     - cd "glmm-theory"
@@ -92,7 +102,13 @@ deploy:
   script:
     - bash
     - git clone git@gitlab.com:neurathsboat.blog/posts/glmm-theory.git
-    - Rscript -e "library(rmarkdown);
+    - Rscript -e "cranRepo = 'https://cloud.r-project.org/';
+                  buildDate = '2019-01-05';
+                  install.packages('checkpoint', repos = cranRepo);
+                  system('mkdir /root/.checkpoint');
+                  library(checkpoint);
+                  checkpoint(buildDate);
+                  library(rmarkdown);
                   setwd('glmm-theory/src');
                   render('glmm-theory.Rmd', output_file = 'index.md');
                   source('ProcessRmd.R')"
