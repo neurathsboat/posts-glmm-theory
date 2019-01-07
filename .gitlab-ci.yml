@@ -81,7 +81,7 @@ test:
                   system('ls -la')"
                   
     # Check access to MRAN (https://github.com/RevolutionAnalytics/checkpoint)
-    - Rscript -e "setwd('glmm-examples');
+    - Rscript -e "setwd('glmm-theory');
                   cranRepo = 'https://cloud.r-project.org/';
                   buildDate0 = '2019-01-01';
                   install.packages('checkpoint', repos = cranRepo);
