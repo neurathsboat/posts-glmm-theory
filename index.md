@@ -10,7 +10,9 @@ summary = "A brief introduction into the theory behind linear models, including 
 abstract = "A brief introduction into the theory behind linear models, including linear mixed-effects models and generalized linear (mixed) models"
 hasPlotly = false
 authors = ["Vassilis Kehayas"]
-doi = "10.5281/zenodo.2402367"
+doi = "10.5281/zenodo.2402366"
+sourceFile = "src/glmm-theory.Rmd"
+
 
 [image]
   caption = ""
